@@ -1,7 +1,7 @@
 package fr.crabbe.restaurant.controller;
 
-import fr.crabbe.restaurant.entity.dto.ClientDto;
-import fr.crabbe.restaurant.entity.dto.OrderDto;
+import fr.crabbe.restaurant.domain.dto.ClientDto;
+import fr.crabbe.restaurant.domain.dto.OrderDto;
 import fr.crabbe.restaurant.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +40,6 @@ public class OrderController {
 
     @PostMapping("/add")
     public ResponseEntity<String> create(@RequestBody @Valid OrderDto dto) {
-
         System.out.println("[ORDER][POST] New Order for Client : " + dto.getClient().getUuid());
         orderService.create(dto);
         System.out.println("[ORDER][POST] Success");

@@ -1,7 +1,7 @@
-package fr.crabbe.restaurant.entity.dto.mapper;
+package fr.crabbe.restaurant.domain.mapper;
 
-import fr.crabbe.restaurant.entity.Client;
-import fr.crabbe.restaurant.entity.dto.ClientDto;
+import fr.crabbe.restaurant.domain.entity.Client;
+import fr.crabbe.restaurant.domain.dto.ClientDto;
 
 import java.util.ArrayList;
 

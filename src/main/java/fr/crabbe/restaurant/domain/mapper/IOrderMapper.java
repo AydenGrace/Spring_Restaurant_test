@@ -1,7 +1,7 @@
-package fr.crabbe.restaurant.entity.dto.mapper;
+package fr.crabbe.restaurant.domain.mapper;
 
-import fr.crabbe.restaurant.entity.Order;
-import fr.crabbe.restaurant.entity.dto.OrderDto;
+import fr.crabbe.restaurant.domain.entity.Order;
+import fr.crabbe.restaurant.domain.dto.OrderDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

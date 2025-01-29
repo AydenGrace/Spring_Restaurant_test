@@ -1,11 +1,12 @@
 package fr.crabbe.restaurant.entity.dto.mapper;
 
-import fr.crabbe.restaurant.entity.Client;
-import fr.crabbe.restaurant.entity.Dish;
-import fr.crabbe.restaurant.entity.Order;
-import fr.crabbe.restaurant.entity.dto.ClientDto;
-import fr.crabbe.restaurant.entity.dto.DishDto;
-import fr.crabbe.restaurant.entity.dto.OrderDto;
+import fr.crabbe.restaurant.domain.entity.Client;
+import fr.crabbe.restaurant.domain.entity.Dish;
+import fr.crabbe.restaurant.domain.entity.Order;
+import fr.crabbe.restaurant.domain.dto.ClientDto;
+import fr.crabbe.restaurant.domain.dto.DishDto;
+import fr.crabbe.restaurant.domain.dto.OrderDto;
+import fr.crabbe.restaurant.domain.mapper.IOrderMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +14,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class IOrderMapperTest {
 

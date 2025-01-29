@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Dish not found")
 public class DishNotFoundException extends RuntimeException {
     public DishNotFoundException() {
-        super("Error : Dish not found");
+        super("Dish not found");
     }
 
     public DishNotFoundException(String message) {

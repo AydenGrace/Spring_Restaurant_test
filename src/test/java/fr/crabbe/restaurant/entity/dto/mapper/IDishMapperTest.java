@@ -1,14 +1,13 @@
 package fr.crabbe.restaurant.entity.dto.mapper;
 
-import fr.crabbe.restaurant.entity.Dish;
-import fr.crabbe.restaurant.entity.dto.DishDto;
+import fr.crabbe.restaurant.domain.entity.Dish;
+import fr.crabbe.restaurant.domain.dto.DishDto;
+import fr.crabbe.restaurant.domain.mapper.IDishMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class IDishMapperTest {
 

@@ -1,14 +1,13 @@
 package fr.crabbe.restaurant.service;
 
-import fr.crabbe.restaurant.entity.Client;
-import fr.crabbe.restaurant.entity.dto.ClientDto;
-import fr.crabbe.restaurant.entity.dto.mapper.ClientMapper;
+import fr.crabbe.restaurant.domain.entity.Client;
+import fr.crabbe.restaurant.domain.dto.ClientDto;
+import fr.crabbe.restaurant.domain.mapper.ClientMapper;
 import fr.crabbe.restaurant.exception.ClientNotFoundException;
 import fr.crabbe.restaurant.exception.ClientNotModifiedException;
 import fr.crabbe.restaurant.repository.IClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;

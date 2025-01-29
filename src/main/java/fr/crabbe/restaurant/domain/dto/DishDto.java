@@ -1,7 +1,6 @@
-package fr.crabbe.restaurant.entity.dto;
+package fr.crabbe.restaurant.domain.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,10 +13,11 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientDto {
+public class DishDto {
     private UUID uuid;
 
-    @NotBlank(message = "A client must have a name")
-    @NotNull(message = "A client must have a name")
+
+    @NotBlank(message = "A dish must have a name")
+    @NotNull(message = "A dish must have a name")
     private String name;
 }

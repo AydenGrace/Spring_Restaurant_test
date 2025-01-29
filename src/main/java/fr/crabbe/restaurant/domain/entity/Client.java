@@ -1,12 +1,12 @@
-package fr.crabbe.restaurant.entity;
+package fr.crabbe.restaurant.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,8 +15,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "clients")
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,15 +25,11 @@ public class Order {
     private UUID uuid;
 
     @Column(nullable = false)
-    private LocalDate orderDate;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Client client;
-
-    @ManyToMany
-    @Column(nullable = false)
-    private List<Dish> dishes;
+    @OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Order> orders;
 
     @PrePersist
     public void prePersist() {

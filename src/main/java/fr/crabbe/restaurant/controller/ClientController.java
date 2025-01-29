@@ -1,6 +1,6 @@
 package fr.crabbe.restaurant.controller;
 
-import fr.crabbe.restaurant.entity.dto.ClientDto;
+import fr.crabbe.restaurant.domain.dto.ClientDto;
 import fr.crabbe.restaurant.service.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +41,6 @@ public class ClientController {
 
     @PatchMapping("/update/{uuid}")
     public ResponseEntity<String> patch(@PathVariable UUID uuid, @RequestBody ClientDto dto) {
-
         System.out.println("[CLIENT][PATCH] UUID : " + uuid);
         clientService.update(uuid, dto);
         System.out.println("[CLIENT][PATCH] Success");

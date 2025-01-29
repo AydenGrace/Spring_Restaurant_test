@@ -1,6 +1,6 @@
 package fr.crabbe.restaurant.repository;
 
-import fr.crabbe.restaurant.entity.Order;
+import fr.crabbe.restaurant.domain.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

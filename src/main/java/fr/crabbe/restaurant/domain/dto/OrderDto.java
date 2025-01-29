@@ -1,4 +1,4 @@
-package fr.crabbe.restaurant.entity.dto;
+package fr.crabbe.restaurant.domain.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

@@ -1,9 +1,6 @@
 package fr.crabbe.restaurant.controller;
 
-import fr.crabbe.restaurant.entity.dto.DishDto;
-import fr.crabbe.restaurant.exception.DishInOrderException;
-import fr.crabbe.restaurant.exception.DishNotFoundException;
-import fr.crabbe.restaurant.exception.DishNotModifiedException;
+import fr.crabbe.restaurant.domain.dto.DishDto;
 import fr.crabbe.restaurant.service.DishService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +52,6 @@ public class DishController {
         System.out.println("[DISH][DELETE] UUID : " + uuid);
         dishService.delete(uuid);
         System.out.println("[DISH][DELETE] Success");
-
         return ResponseEntity.ok("Dish deleted");
     }
 }

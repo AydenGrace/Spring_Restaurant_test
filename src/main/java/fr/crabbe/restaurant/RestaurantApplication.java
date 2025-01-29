@@ -1,7 +1,7 @@
 package fr.crabbe.restaurant;
 
-import fr.crabbe.restaurant.entity.Client;
-import fr.crabbe.restaurant.entity.Dish;
+import fr.crabbe.restaurant.domain.entity.Client;
+import fr.crabbe.restaurant.domain.entity.Dish;
 import fr.crabbe.restaurant.repository.IClientRepository;
 import fr.crabbe.restaurant.repository.IDishRepository;
 import lombok.RequiredArgsConstructor;

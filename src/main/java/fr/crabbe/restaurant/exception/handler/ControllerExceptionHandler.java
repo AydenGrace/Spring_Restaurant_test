@@ -1,5 +1,6 @@
 package fr.crabbe.restaurant.exception.handler;
 
+import fr.crabbe.restaurant.domain.ErrorMessage;
 import fr.crabbe.restaurant.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,39 +12,57 @@ import org.springframework.web.context.request.WebRequest;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(ClientNotFoundException.class)
-    public ResponseEntity<String> ClientNotFoundException(ClientNotFoundException ex, WebRequest request) {
+    public ResponseEntity<ErrorMessage> ClientNotFoundException(ClientNotFoundException ex, WebRequest request) {
+        ErrorMessage em = new ErrorMessage();
+        em.setStatus(HttpStatus.NOT_FOUND);
+        em.getErrors().add(ex.getMessage());
         System.out.println(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(em);
     }
 
     @ExceptionHandler(ClientNotModifiedException.class)
-    public ResponseEntity<String> ClientNotModifiedException(ClientNotModifiedException ex, WebRequest request) {
+    public ResponseEntity<ErrorMessage> ClientNotModifiedException(ClientNotModifiedException ex, WebRequest request) {
+        ErrorMessage em = new ErrorMessage();
+        em.setStatus(HttpStatus.NOT_MODIFIED);
+        em.getWarnings().add(ex.getMessage());
         System.out.println(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(em);
     }
 
     @ExceptionHandler(DishNotFoundException.class)
-    public ResponseEntity<String> DishNotFoundException(DishNotFoundException ex, WebRequest request) {
+    public ResponseEntity<ErrorMessage> DishNotFoundException(DishNotFoundException ex, WebRequest request) {
+        ErrorMessage em = new ErrorMessage();
+        em.setStatus(HttpStatus.NOT_FOUND);
+        em.getErrors().add(ex.getMessage());
         System.out.println(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(em);
     }
 
     @ExceptionHandler(DishInOrderException.class)
-    public ResponseEntity<String> DishInOrderException(DishInOrderException ex, WebRequest request) {
+    public ResponseEntity<ErrorMessage> DishInOrderException(DishInOrderException ex, WebRequest request) {
+        ErrorMessage em = new ErrorMessage();
+        em.setStatus(HttpStatus.CONFLICT);
+        em.getErrors().add(ex.getMessage());
         System.out.println(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(em);
     }
 
     @ExceptionHandler(DishNotModifiedException.class)
-    public ResponseEntity<String> DishNotModifiedException(DishNotModifiedException ex, WebRequest request) {
+    public ResponseEntity<ErrorMessage> DishNotModifiedException(DishNotModifiedException ex, WebRequest request) {
+        ErrorMessage em = new ErrorMessage();
+        em.setStatus(HttpStatus.NOT_MODIFIED);
+        em.getWarnings().add(ex.getMessage());
         System.out.println(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(em);
     }
 
     @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<String> OrderNotFoundException(OrderNotFoundException ex, WebRequest request) {
+    public ResponseEntity<ErrorMessage> OrderNotFoundException(OrderNotFoundException ex, WebRequest request) {
+        ErrorMessage em = new ErrorMessage();
+        em.setStatus(HttpStatus.NOT_FOUND);
+        em.getErrors().add(ex.getMessage());
         System.out.println(ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(em);
     }
 
 }

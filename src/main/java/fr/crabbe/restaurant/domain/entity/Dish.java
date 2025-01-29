@@ -1,4 +1,4 @@
-package fr.crabbe.restaurant.entity;
+package fr.crabbe.restaurant.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,9 +1,9 @@
 package fr.crabbe.restaurant.service;
 
-import fr.crabbe.restaurant.entity.Dish;
-import fr.crabbe.restaurant.entity.Order;
-import fr.crabbe.restaurant.entity.dto.OrderDto;
-import fr.crabbe.restaurant.entity.dto.mapper.OrderMapper;
+import fr.crabbe.restaurant.domain.entity.Dish;
+import fr.crabbe.restaurant.domain.entity.Order;
+import fr.crabbe.restaurant.domain.dto.OrderDto;
+import fr.crabbe.restaurant.domain.mapper.OrderMapper;
 import fr.crabbe.restaurant.exception.ClientNotFoundException;
 import fr.crabbe.restaurant.exception.DishNotFoundException;
 import fr.crabbe.restaurant.exception.OrderNotFoundException;

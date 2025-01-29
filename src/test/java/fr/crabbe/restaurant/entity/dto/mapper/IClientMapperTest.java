@@ -1,14 +1,13 @@
 package fr.crabbe.restaurant.entity.dto.mapper;
 
-import fr.crabbe.restaurant.entity.Client;
-import fr.crabbe.restaurant.entity.dto.ClientDto;
+import fr.crabbe.restaurant.domain.entity.Client;
+import fr.crabbe.restaurant.domain.dto.ClientDto;
+import fr.crabbe.restaurant.domain.mapper.IClientMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class IClientMapperTest {
 
