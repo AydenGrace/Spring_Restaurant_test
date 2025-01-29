@@ -1,8 +1,6 @@
 package fr.crabbe.restaurant.controller;
 
 import fr.crabbe.restaurant.entity.dto.ClientDto;
-import fr.crabbe.restaurant.exception.ClientNotFoundException;
-import fr.crabbe.restaurant.exception.ClientNotModifiedException;
 import fr.crabbe.restaurant.service.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,13 +27,8 @@ public class ClientController {
 
     @GetMapping("/{uuid}")
     public ResponseEntity<ClientDto> getByUuid(@PathVariable UUID uuid) {
-        try {
-            System.out.println("[CLIENT][GET] UUID : " + uuid);
-            return ResponseEntity.ok(clientService.getByUuid(uuid));
-        } catch (ClientNotFoundException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        System.out.println("[CLIENT][GET] UUID : " + uuid);
+        return ResponseEntity.ok(clientService.getByUuid(uuid));
     }
 
     @PostMapping("/add")
@@ -48,31 +41,18 @@ public class ClientController {
 
     @PatchMapping("/update/{uuid}")
     public ResponseEntity<String> patch(@PathVariable UUID uuid, @RequestBody ClientDto dto) {
-        try {
-            System.out.println("[CLIENT][PATCH] UUID : " + uuid);
-            clientService.update(uuid, dto);
-            System.out.println("[CLIENT][PATCH] Success");
-            return ResponseEntity.ok("Client modified");
-        } catch (ClientNotFoundException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client with UUID : " + uuid + " not found.");
-        } catch (ClientNotModifiedException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body("Client with UUID : " + uuid + " not modified.");
-        }
+
+        System.out.println("[CLIENT][PATCH] UUID : " + uuid);
+        clientService.update(uuid, dto);
+        System.out.println("[CLIENT][PATCH] Success");
+        return ResponseEntity.ok("Client modified");
     }
 
     @DeleteMapping("/delete/{uuid}")
     public ResponseEntity<String> delete(@PathVariable UUID uuid) {
-        try {
-            System.out.println("[CLIENT][DELETE] UUID : " + uuid);
-            clientService.delete(uuid);
-            System.out.println("[CLIENT][DELETE] Success");
-            return ResponseEntity.ok("Client deleted");
-
-        } catch (ClientNotFoundException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client with UUID : " + uuid + " not found.");
-        }
+        System.out.println("[CLIENT][DELETE] UUID : " + uuid);
+        clientService.delete(uuid);
+        System.out.println("[CLIENT][DELETE] Success");
+        return ResponseEntity.ok("Client deleted");
     }
 }

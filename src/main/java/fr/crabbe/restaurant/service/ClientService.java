@@ -8,6 +8,7 @@ import fr.crabbe.restaurant.exception.ClientNotModifiedException;
 import fr.crabbe.restaurant.repository.IClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,17 @@ public class ClientService {
     }
 
     public ClientDto getById(Long id) throws ClientNotFoundException{
-        Optional<Client> client =  clientRepository.findById(id);
-        if(client.isPresent()){
-            return ClientMapper.toDto(client.get());
-        } else {
-            throw new ClientNotFoundException();
+        try{
+            Optional<Client> client =  clientRepository.findById(id);
+            if(client.isPresent()){
+                return ClientMapper.toDto(client.get());
+            } else {
+                throw new ClientNotFoundException();
+            }
+        }catch (ClientNotFoundException e){
+            return null;
         }
+
     }
 
     public ClientDto getByUuid(UUID uuid) throws ClientNotFoundException{

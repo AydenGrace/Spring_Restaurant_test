@@ -34,7 +34,8 @@ class ClientControllerTest {
 
     @Test
     void getByUuid() throws Exception {
-        mockMvc.perform(get("/clients/554f9797-ffc8-4b34-80ab-f8f6da30c948")).andExpect(status().isOk());
+        mockMvc.perform(get("/clients/554f9797-ffc8-4b34-80ab-f8f6da30c948"))
+                .andExpect(status().isOk());
     }
 
     @Test

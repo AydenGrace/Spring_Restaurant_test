@@ -30,13 +30,8 @@ public class DishController {
 
     @GetMapping("/{uuid}")
     public ResponseEntity<DishDto> getById(@PathVariable UUID uuid) {
-        try {
-            System.out.println("[DISH][GET] UUID : " + uuid);
-            return ResponseEntity.ok(dishService.getByUuid(uuid));
-        } catch (DishNotFoundException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        System.out.println("[DISH][GET] UUID : " + uuid);
+        return ResponseEntity.ok(dishService.getByUuid(uuid));
     }
 
     @PostMapping("/add")
@@ -49,34 +44,18 @@ public class DishController {
 
     @PatchMapping("/update/{uuid}")
     public ResponseEntity<String> patch(@PathVariable UUID uuid, @RequestBody DishDto dto) {
-        try {
-            System.out.println("[DISH][PATCH] UUID : "+uuid);
-            dishService.update(uuid, dto);
-            System.out.println("[DISH][PATCH] Success");
-            return ResponseEntity.ok("Dish modified");
-        } catch (DishNotFoundException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Dish with UUID : " + uuid + " not found.");
-        } catch (DishNotModifiedException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body("Dish with UUID : " + uuid + " not modified.");
-        }
+        System.out.println("[DISH][PATCH] UUID : " + uuid);
+        dishService.update(uuid, dto);
+        System.out.println("[DISH][PATCH] Success");
+        return ResponseEntity.ok("Dish modified");
     }
 
     @DeleteMapping("/delete/{uuid}")
     public ResponseEntity<String> delete(@PathVariable UUID uuid) {
-        try {
-            System.out.println("[DISH][DELETE] UUID : " + uuid);
-            dishService.delete(uuid);
-            System.out.println("[DISH][DELETE] Success");
+        System.out.println("[DISH][DELETE] UUID : " + uuid);
+        dishService.delete(uuid);
+        System.out.println("[DISH][DELETE] Success");
 
-            return ResponseEntity.ok("Dish deleted");
-        } catch (DishNotFoundException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Dish with UUID : " + uuid + " not found.");
-        } catch (DishInOrderException e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Dish with UUID : " + uuid + " already in an order.");
-        }
+        return ResponseEntity.ok("Dish deleted");
     }
 }
