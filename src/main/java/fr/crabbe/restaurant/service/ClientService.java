@@ -3,6 +3,7 @@ package fr.crabbe.restaurant.service;
 import fr.crabbe.restaurant.domain.entity.Client;
 import fr.crabbe.restaurant.domain.dto.ClientDto;
 import fr.crabbe.restaurant.domain.mapper.ClientMapper;
+import fr.crabbe.restaurant.domain.mapper.IClientMapper;
 import fr.crabbe.restaurant.exception.ClientNotFoundException;
 import fr.crabbe.restaurant.exception.ClientNotModifiedException;
 import fr.crabbe.restaurant.repository.IClientRepository;
@@ -44,27 +45,30 @@ public class ClientService {
     public ClientDto getByUuid(UUID uuid) throws ClientNotFoundException{
         Optional<Client> client =  clientRepository.findByUuid(uuid);
         if(client.isPresent()){
-            return ClientMapper.toDto(client.get());
+            return IClientMapper.INSTANCE.clientToClientDto(client.get());
         } else {
             throw new ClientNotFoundException();
         }
     }
 
-    public void create(ClientDto dto){
-        clientRepository.save(ClientMapper.toEntity(dto));
+    public Client create(ClientDto dto){
+        Client client = IClientMapper.INSTANCE.clientDtoToClient(dto);
+        return clientRepository.save(client);
     }
 
-    public void update(UUID uuid, ClientDto dto) throws ClientNotFoundException, ClientNotModifiedException {
-        clientRepository.findByUuid(uuid).ifPresentOrElse(client -> {
-            if (dto.getName() != null && !dto.getName().equals(client.getName())) {
-                client.setName(dto.getName());
-                clientRepository.save(client);
+    public ClientDto update(UUID uuid, ClientDto dto) throws ClientNotFoundException, ClientNotModifiedException {
+        Optional<Client> clientFound = clientRepository.findByUuid(uuid);
+        if(clientFound.isPresent()){
+            if (dto.getName() != null && !dto.getName().equals(clientFound.get().getName())) {
+                clientFound.get().setName(dto.getName());
+                clientRepository.save(clientFound.get());
+                return IClientMapper.INSTANCE.clientToClientDto(clientFound.get());
             } else {
                 throw new ClientNotModifiedException();
             }
-        }, () -> {
+        } else {
             throw new ClientNotFoundException();
-        });
+        }
     }
 
     public void delete(UUID uuid) throws ClientNotFoundException{

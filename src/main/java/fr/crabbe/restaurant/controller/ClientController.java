@@ -1,6 +1,9 @@
 package fr.crabbe.restaurant.controller;
 
 import fr.crabbe.restaurant.domain.dto.ClientDto;
+import fr.crabbe.restaurant.domain.entity.Client;
+import fr.crabbe.restaurant.domain.mapper.ClientMapper;
+import fr.crabbe.restaurant.domain.mapper.IClientMapper;
 import fr.crabbe.restaurant.service.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Validated
@@ -17,7 +21,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
-    private final ClientService clientService;
+    private ClientService clientService;
+
+    public ClientController(ClientService clientService){
+        this.clientService = clientService;
+    }
 
     @GetMapping
     public ResponseEntity<List<ClientDto>> getAll() {
@@ -32,19 +40,20 @@ public class ClientController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> create(@RequestBody @Valid ClientDto dto) {
+    public ResponseEntity<ClientDto> create(@RequestBody @Valid ClientDto dto) {
         System.out.println("[CLIENT][POST] New Client : " + dto.getName());
-        clientService.create(dto);
+        Client response = clientService.create(dto);
         System.out.println("[CLIENT][POST] Success");
-        return ResponseEntity.status(HttpStatus.CREATED).body("Client created");
+        return ResponseEntity.status(HttpStatus.CREATED).body(IClientMapper.INSTANCE.clientToClientDto(response));
+
     }
 
     @PatchMapping("/update/{uuid}")
-    public ResponseEntity<String> patch(@PathVariable UUID uuid, @RequestBody ClientDto dto) {
+    public ResponseEntity<ClientDto> patch(@PathVariable UUID uuid, @RequestBody @Valid ClientDto dto) {
         System.out.println("[CLIENT][PATCH] UUID : " + uuid);
-        clientService.update(uuid, dto);
+        ClientDto response = clientService.update(uuid, dto);
         System.out.println("[CLIENT][PATCH] Success");
-        return ResponseEntity.ok("Client modified");
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/delete/{uuid}")

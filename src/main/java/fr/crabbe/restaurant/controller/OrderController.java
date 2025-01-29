@@ -18,7 +18,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    private final OrderService orderService;
+    private OrderService orderService;
+
+    public OrderController(OrderService orderService){
+        this.orderService = orderService;
+    }
 
     @GetMapping
     public ResponseEntity<List<OrderDto>> getAll() {

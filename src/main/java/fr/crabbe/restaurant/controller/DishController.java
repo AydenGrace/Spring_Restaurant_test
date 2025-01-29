@@ -17,7 +17,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/dishes")
 public class DishController {
-    private final DishService dishService;
+    private DishService dishService;
+
+    public DishController(DishService dishService){
+        this.dishService = dishService;
+    }
 
     @GetMapping
     public ResponseEntity<List<DishDto>> getAll() {
